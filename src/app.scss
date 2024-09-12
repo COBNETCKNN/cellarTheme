@@ -2,3 +2,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Loading fonts
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('../assets/fonts/SpaceGrotesk/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lexend Giga';
+    src: url('../assets/fonts/LexendGiga/LexendGiga-VariableFont_wght.ttf') format('truetype');
+}
+
+.header-menu {
+    .menu {
+        display: flex;
+        justify-content: center;
+
+        li {
+            padding: 5px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+    }
+}
+
+.footer-menu {
+    .menu {
+        display: flex;
+        justify-content: center;
+
+        li {
+            padding: 5px;
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+    }
+}
+
+.socialMedia_icons__wrapper {
+    a {
+        margin-right: 20px;
+    }
+}
+
+.footer_navigation__wrapper {
+    clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%);
+}

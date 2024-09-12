@@ -12,3 +12,9 @@ function cellarTheme_files() {
 
 }
 add_action('wp_enqueue_scripts', 'cellarTheme_files');
+
+//Registration of the navigation menus
+require_once('includes/nav-menus.php');
+
+//Custom image sizes
+require_once('includes/image-sizes.php');
