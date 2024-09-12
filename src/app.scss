@@ -49,3 +49,15 @@
 .footer_navigation__wrapper {
     clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%);
 }
+
+.heroBackground {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: -5%;
+}
+
+.homepageHero_heading {
+    font-size: 62px;
+    line-height: normal;
+}

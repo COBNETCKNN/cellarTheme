@@ -18,3 +18,9 @@ require_once('includes/nav-menus.php');
 
 //Custom image sizes
 require_once('includes/image-sizes.php');
+
+//Disable classic editor from certain pages
+require_once('includes/disable-editor.php');
+
+//Theme supports
+require_once('includes/theme-supports.php');

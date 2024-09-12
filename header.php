@@ -12,7 +12,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header class="bg-black py-5">
+<header class="bg-transparent py-5">
     <div class="container mx-auto h-auto">
         <?php if( have_rows('theme_settings', 'option') ): ?>
             <?php while( have_rows('theme_settings', 'option') ): the_row(); ?>

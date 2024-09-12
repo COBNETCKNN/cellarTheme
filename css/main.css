@@ -550,20 +550,47 @@ video {
   margin-top: auto;
   margin-bottom: auto;
 }
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
+}
+.mt-10 {
+  margin-top: 2.5rem;
+}
+.mt-14 {
+  margin-top: 3.5rem;
+}
 .flex {
   display: flex;
-}
-.h-\[50vh\] {
-  height: 50vh;
 }
 .h-auto {
   height: auto;
 }
+.h-full {
+  height: 100%;
+}
+.h-screen {
+  height: 100vh;
+}
 .w-\[30\%\] {
   width: 30%;
 }
+.w-\[50\%\] {
+  width: 50%;
+}
 .w-\[70\%\] {
   width: 70%;
+}
+.w-\[80\%\] {
+  width: 80%;
+}
+.w-full {
+  width: 100%;
 }
 .items-center {
   align-items: center;
@@ -577,10 +604,6 @@ video {
 .justify-between {
   justify-content: space-between;
 }
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
 .bg-charcoal {
   --tw-bg-opacity: 1;
   background-color: rgb(28 28 28 / var(--tw-bg-opacity));
@@ -588,6 +611,9 @@ video {
 .bg-lime {
   --tw-bg-opacity: 1;
   background-color: rgb(207 241 92 / var(--tw-bg-opacity));
+}
+.bg-transparent {
+  background-color: transparent;
 }
 .px-5 {
   padding-left: 1.25rem;
@@ -604,6 +630,25 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+.px-14 {
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.text-center {
+  text-align: center;
 }
 .text-start {
   text-align: start;
@@ -622,22 +667,28 @@ video {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
 .font-bold {
   font-weight: 700;
+}
+.font-light {
+  font-weight: 300;
 }
 .font-medium {
   font-weight: 500;
 }
 .uppercase {
   text-transform: uppercase;
+}
+.leading-snug {
+  line-height: 1.375;
 }
 .tracking-tighter {
   letter-spacing: -0.05em;
@@ -688,4 +739,16 @@ video {
 
 .footer_navigation__wrapper {
   clip-path: polygon(25px 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.heroBackground {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: -5%;
+}
+
+.homepageHero_heading {
+  font-size: 62px;
+  line-height: normal;
 }
