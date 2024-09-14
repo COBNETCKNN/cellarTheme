@@ -627,6 +627,12 @@ video {
 .mt-5 {
   margin-top: 1.25rem;
 }
+.-ml-\[10\%\] {
+  margin-left: -10%;
+}
+.-ml-\[20\%\] {
+  margin-left: -20%;
+}
 .flex {
   display: flex;
 }
@@ -659,6 +665,9 @@ video {
 }
 .w-full {
   width: 100%;
+}
+.w-\[75\%\] {
+  width: 75%;
 }
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -702,12 +711,19 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(28 28 28 / var(--tw-bg-opacity));
 }
+.bg-grey {
+  --tw-bg-opacity: 1;
+  background-color: rgb(233 236 239 / var(--tw-bg-opacity));
+}
 .bg-lime {
   --tw-bg-opacity: 1;
   background-color: rgb(207 241 92 / var(--tw-bg-opacity));
 }
 .bg-transparent {
   background-color: transparent;
+}
+.p-14 {
+  padding: 3.5rem;
 }
 .px-10 {
   padding-left: 2.5rem;
@@ -769,7 +785,7 @@ video {
   font-family: Space Grotesk, sans-serif;
 }
 .text-1xl {
-  font-size: 1.75rem;
+  font-size: 1.375rem;
 }
 .text-2xl {
   font-size: 1.5rem;
@@ -928,6 +944,16 @@ video {
   position: relative;
 }
 
+.headingBlack_underline__start::after {
+  content: "";
+  display: block;
+  width: 70px; /* The width of the line */
+  height: 2px; /* The height of the line */
+  background-color: #000; /* Color of the line */
+  margin: 25px 0 0; /* Space between heading and line */
+  position: relative;
+}
+
 .programsCard {
   height: 600px;
   width: 100%;
@@ -964,4 +990,21 @@ video {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#testimonials {
+  background-image: url("../assets/images/cellarThemeTestimonialsBackground.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.testimonial_slideCard {
+  min-height: 450px;
+  border-radius: 3px;
+}
+
+.guideFeaturedImage {
+  width: 100%;
+  height: 600px;
+  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
 }

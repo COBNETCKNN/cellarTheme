@@ -7,12 +7,13 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        '1xl': '1.75rem',
+        '1xl': '1.375rem',
         '4.5xl': '2.75rem',
       },
       colors: {
         lime: '#CFF15C',
-        charcoal: '#1C1C1C'
+        charcoal: '#1C1C1C',
+        grey: '#E9ECEF',
       },
       fontFamily: {
         giga: ["Lexend Giga", "sans-serif"],

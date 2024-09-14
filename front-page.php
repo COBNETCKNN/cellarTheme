@@ -122,8 +122,6 @@
                             <p class="text-white font-space text-xl text-start mb-14"><?php echo $introDescription; ?></p>
                             <a class="bg-lime font-giga text-md font-bold uppercase tracking-tighter px-12 py-5" href="<?php echo esc_url($introButtonLink); ?>"><?php echo $introButtonText; ?></a>
 
-
-
                             <?php endwhile; ?>
                         <?php endif; ?>
                     </div>
@@ -202,4 +200,102 @@
          </div>
     </div>
  </section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-32">
+    <div class="container mx-auto">
+        <?php if( have_rows('home_testimonials') ): ?>
+            <?php while( have_rows('home_testimonials') ): the_row(); ?>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Content -->
+                    <?php if( have_rows('home_testimonials_content') ): ?>
+                        <?php while( have_rows('home_testimonials_content') ): the_row(); 
+                        
+                            $testimonialsHeading = get_sub_field('home_testimonials_content_heading');
+                            $testimonialsDescription = get_sub_field('home_testimonials_content_description');
+                            ?>
+                            
+                            <div class="my-auto">
+                                <h1 class="headingGreen_underline__start text-white font-giga text-4.5xl font-bold leading-tight text-start uppercase mb-8"><?php echo $testimonialsHeading; ?></h1>
+                                <p class="text-white font-space text-1xl text-start mb-14"><?php echo $testimonialsDescription; ?></p>
+                                <?php if( have_rows('home_testimonials_content_button') ): ?>
+                                    <?php while( have_rows('home_testimonials_content_button') ): the_row(); 
+                                    
+                                    $testimonialButtonText = get_sub_field('home_testimonials_content_button_button_text');
+                                    $testimonialButtonLink = get_sub_field('home_testimonials_content_button_button_link');
+                                    ?>
+                                        <a class="bg-lime font-giga text-md font-bold uppercase tracking-tighter px-12 py-5" href="<?php echo esc_url($testimonialButtonLink); ?>"><?php echo $testimonialButtonText; ?></a>
+                                    <?php endwhile; ?>
+                                <?php endif; ?>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                    <!-- Slider -->
+                    <div class="testimonial_slideCard bg-grey p-14 my-auto">
+                        <?php if( have_rows('home_repeater_testimonials') ): ?>
+                            <?php while( have_rows('home_repeater_testimonials') ): the_row(); 
+                            
+                            $reviewerImage = get_sub_field('home_repeater_testimonials_image');
+                            $reviewerImageSize = 'testimonial-avatar';
+                            $reviewerName = get_sub_field('home_repeater_testimonials_name');
+                            $reviewerReview = get_sub_field('home_repeater_testimonials_review_text');
+                            ?>
+
+                            <p class="font-space text-2xl text-black font-medium"><?php echo $reviewerReview; ?></p>
+                            <div class="flex justify-start items-center mt-10">
+                                <?php 
+                                if( $reviewerImage ) {
+                                    echo wp_get_attachment_image( $reviewerImage, $reviewerImageSize );
+                                }
+                                ?>
+                                <h4 class="font-giga text-lg text-black font-bold uppercase"><?php echo $reviewerName; ?></h4>
+                            </div>
+                            
+
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php endif; ?>
+    </div>
+</section>
+
+<!-- Guide Section -->
+ <section id="guide" class="bg-lime">
+    <div class="container mx-auto">
+        <?php if( have_rows('home_guide') ): ?>
+            <?php while( have_rows('home_guide') ): the_row(); ?>
+                <div class="grid grid-cols-2">
+                    <!-- Content -->
+                    <div class="py-24 my-auto">
+                        <?php if( have_rows('home_guide_content') ): ?>
+                            <?php while( have_rows('home_guide_content') ): the_row(); 
+                            
+                            $guideHeading = get_sub_field('home_guide_content_heading');
+                            $guideDescription = get_sub_field('home_guide_content_description');
+                            $guideDownloadLink = get_sub_field('home_guide_content_download_link');
+                            ?>
+
+                                <h1 class="headingBlack_underline__start text-black font-giga text-4.5xl font-bold leading-tight text-start uppercase mb-8"><?php echo $guideHeading; ?></h1>
+                                <p class="text-black font-space text-1xl text-start mb-14 w-[75%]"><?php echo $guideDescription; ?></p>
+                                <a class="bg-lime font-giga text-md font-bold uppercase tracking-tighter border border-black px-12 py-5" href="<?php echo esc_url($guideDownloadLink); ?>">Download</a>
+
+
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
+                    <!-- Featured Image -->
+                    <?php 
+                    $guideFeaturedImage = get_sub_field('home_guide_featured_image');
+                    ?>
+                    <div class="guideFeaturedImage" style="background-image: url('<?php echo esc_url($guideFeaturedImage); ?>');">
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php endif; ?>
+    </div>
+ </section>
+
+
 <?php get_footer(); ?>
