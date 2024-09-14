@@ -94,3 +94,45 @@
     margin: 25px 0 0;  /* Space between heading and line */
     position: relative;
 }
+
+.programsCard {
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+}
+
+.programsCard_content__wrapper {
+    background-color:rgba(28, 28, 28, 0.8);
+}
+
+.programsCard_content__wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.programsCard_hoverContent__wrapper {
+    background-color:rgba(207, 241, 92, 0.9);   
+}
+
+// Cards hovering effect
+/* Initially hide hover content */
+.programsCard_hoverContent__wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* Show content when hovered */
+.programsCard:hover .programsCard_hoverContent__wrapper {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hide the default content on hover */
+.programsCard:hover .programsCard_content__wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}

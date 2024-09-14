@@ -133,4 +133,73 @@
     </div>
  </section>
 
+<!-- Programs Section -->
+ <section id="programs" class="bg-black py-32">
+    <div class="container mx-auto">
+        <!-- Heading -->
+        <div class="">
+            <?php if( have_rows('home_programs') ): ?>
+                <?php while( have_rows('home_programs') ): the_row(); 
+                
+                $programsSectionHeading = get_sub_field('programs_section_heading');
+                ?>
+
+                    <h1 class="heading_greenUnderline font-giga font-bold text-white text-5xl uppercase text-center"><?php echo $programsSectionHeading; ?></h1>
+
+                <?php endwhile; ?>
+            <?php endif; ?>
+        </div>
+        <!-- Cards -->
+         <div class="grid grid-cols-3 gap-6 mt-20">
+         <?php
+            // The Query
+            $programsArgs = array(
+                'post_type' => 'programs',   // Specify the custom post type
+                'posts_per_page' => 3,      // Number of posts to display
+                'orderby' => 'date',        // Order by date
+                'order' => 'DESC',           // Sort in descending order
+            );
+
+            $programsQuery = new WP_Query($programsArgs); 
+            
+            // The Loop
+            if ($programsQuery->have_posts()) :
+                while ($programsQuery->have_posts()) : $programsQuery->the_post(); 
+                
+                $partnersFeaturedImageUrl = get_the_post_thumbnail_url(get_the_ID(), 'program-card'); 
+                ?>
+                <div class="programsCard relative z-10" style="background-image: url('<?php echo esc_url($partnersFeaturedImageUrl); ?>');">
+                    <div class="programsCard_content__wrapper h-[50%] w-full px-10">
+                        <div class="w-full h-full flex justify-center items-center">
+                            <div class="">
+                                <h3 class="text-lime font-giga text-2xl text-start mb-5 uppercase"><?php echo the_title(); ?></h3>
+                                <div class="text-white font-space text-xl text-start">
+                                    <?php wp_trim_words(the_content(), 30); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hovering content -->
+                    <div class="programsCard_hoverContent__wrapper h-full w-full z-20 absolute top-0 right-0 flex justify-center items-center">
+                        <div class="px-10">
+                            <h3 class="text-black font-giga text-2xl text-start mb-5 uppercase font-bold"><?php echo the_title(); ?></h3>
+                            <div class="text-black font-space text-xl text-start mb-10">
+                                <?php wp_trim_words(the_content(), 30); ?>
+                            </div>
+                            <a class="bg-lime text-black font-giga text-sm font-semibold uppercase tracking-tighter px-7 py-3 border border-black" href="<?php echo esc_url(the_permalink()); ?>">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+                endwhile;
+            else :
+                // No posts found
+                echo 'No programs found';
+            endif; 
+            wp_reset_postdata();
+            ?>
+         </div>
+    </div>
+ </section>
 <?php get_footer(); ?>

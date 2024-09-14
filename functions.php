@@ -24,3 +24,6 @@ require_once('includes/disable-editor.php');
 
 //Theme supports
 require_once('includes/theme-supports.php');
+
+//Custom Post Types
+require_once('includes/post-types.php');
