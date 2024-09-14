@@ -61,3 +61,36 @@
     font-size: 62px;
     line-height: normal;
 }
+
+.heading_greenUnderline {
+    position: relative;
+}
+
+.heading_greenUnderline::after {
+    content: "";
+    display: block;
+    width: 70px;  /* The width of the line */
+    height: 2px;  /* The height of the line */
+    background-color: #CFF15C;  /* Color of the line */
+    margin: 25px auto 0;  /* Space between heading and line */
+    position: relative;
+}
+
+.processOverview_cards__counter {
+    font-size: 88px;
+    letter-spacing: -0.08em;
+}
+
+.processCard_wrapper {
+    min-height: 320px;
+}
+
+.headingGreen_underline__start::after {
+    content: "";
+    display: block;
+    width: 70px;  /* The width of the line */
+    height: 2px;  /* The height of the line */
+    background-color: #CFF15C;  /* Color of the line */
+    margin: 25px 0 0;  /* Space between heading and line */
+    position: relative;
+}
