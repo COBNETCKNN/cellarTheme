@@ -30,13 +30,17 @@
                  <div class="mt-14">
                     <?php if( have_rows('theme_settings', 'option') ): ?>
                         <?php while( have_rows('theme_settings', 'option') ): the_row(); ?>
-                            <?php if( have_rows('header_button') ): ?>
-                                <?php while( have_rows('header_button') ): the_row(); 
-                                    $headerButtonName = get_sub_field('header_button_button_name', 'option');
-                                    $headerButtonLink = get_sub_field('header_button_link', 'option'); ?>
+                            <?php if( have_rows('theme_settings_header', 'option') ): ?>
+                                <?php while( have_rows('theme_settings_header', 'option') ): the_row(); ?>
+                                    <?php if( have_rows('header_button') ): ?>
+                                        <?php while( have_rows('header_button') ): the_row(); 
+                                            $headerButtonName = get_sub_field('header_button_button_name', 'option');
+                                            $headerButtonLink = get_sub_field('header_button_link', 'option'); ?>
 
-                                    <a class="bg-lime font-giga text-md font-bold uppercase tracking-tighter px-12 py-5 mt-10" href="<?php echo esc_url($headerButtonLink); ?>"><?php echo $headerButtonName; ?></a>
+                                            <a class="bg-lime font-giga text-md font-bold uppercase tracking-tighter px-12 py-5 mt-10" href="<?php echo esc_url($headerButtonLink); ?>"><?php echo $headerButtonName; ?></a>
 
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
                                 <?php endwhile; ?>
                             <?php endif; ?>
                         <?php endwhile; ?>
@@ -47,6 +51,10 @@
         </div>
     </div>
  </section>
+ <svg xmlns="http://www.w3.org/2000/svg" class="divider-triangle-shape" viewBox="0 0 1080 100" preserveAspectRatio="none">
+    <path d="M 0 55 L 0 100 L 540 74 Z" fill="#CFF15C"></path>
+    <path d="M 0,100 540,75 1080,100 Z" fill="black"></path>
+</svg>
 
 <!-- Process Overview Section -->
  <section class="bg-black">
@@ -60,29 +68,35 @@
                     <h1 class="heading_greenUnderline font-giga font-bold text-white text-5xl uppercase text-center"><?php echo $processOverviewHeading; ?></h1>
 
                     <!-- Cards Repeater -->
-                    <div class="grid grid-cols-3 gap-14 my-24 mx-24">
+                    <div class="grid grid-cols-3 gap-14 my-24 mx-24 process-overview-wrapper">
                         <?php
                         $counter = 1;
                         ?>
                         <?php if( have_rows('process_overview_cards') ): ?>
                             <?php while( have_rows('process_overview_cards') ): the_row(); 
-                            
+
                             $processOverviewCardsHeading = get_sub_field('process_heading');
                             $processOverviewCardsDescrirption = get_sub_field('process_description');
                             $formatted_number = sprintf('%02d', $counter);
                             ?>
 
-                            <div class="processCard_wrapper bg-charcoal px-8 py-7">
+                            <div class="processCard_wrapper bg-charcoal px-10 py-10">
                                 <span class="processOverview_cards__counter text-zinc-600 font-giga text-black font-black leading-none opacity-40"><?php echo $formatted_number; ?></span>
-                                <h5 class="font-bold font-giga text-lime text-1xl uppercase text-start mt-14"><?php echo $processOverviewCardsHeading; ?></h5>
-                                <p class="font-medium font-giga text-white text-xl text-start pt-5"><?php echo $processOverviewCardsDescrirption; ?></p>
+                                <h5 class="font-bold font-giga text-lime text-2.5xl uppercase text-start mt-14"><?php echo $processOverviewCardsHeading; ?></h5>
+                                <p class="font-medium font-space text-white text-xl text-start pt-5"><?php echo $processOverviewCardsDescrirption; ?></p>
                             </div>
-
 
                             <?php $counter++; ?>
                             <?php endwhile; ?>
                         <?php endif; ?>
                     </div>
+
+                    <!-- Progress Bar -->
+                     <div class="h-auto w-full flex justify-center">
+                        <div class="progress-bar-top">
+                            <div class="progress-bar-inner-top"></div>
+                        </div>
+                     </div>
                 <?php endwhile; ?>
             <?php endif; ?>
         </div>
@@ -100,7 +114,7 @@
                     $introFeaturedImageSize = 'intro-featured';
                     ?>
                     <!-- Featured Image -->
-                    <div class="">
+                    <div class="introFeaturedImage">
                         <?php 
                             if( $introFeaturedImage ) {
                                 echo wp_get_attachment_image( $introFeaturedImage, $introFeaturedImageSize );
@@ -231,29 +245,36 @@
                         <?php endwhile; ?>
                     <?php endif; ?>
                     <!-- Slider -->
-                    <div class="testimonial_slideCard bg-grey p-14 my-auto">
-                        <?php if( have_rows('home_repeater_testimonials') ): ?>
-                            <?php while( have_rows('home_repeater_testimonials') ): the_row(); 
-                            
-                            $reviewerImage = get_sub_field('home_repeater_testimonials_image');
-                            $reviewerImageSize = 'testimonial-avatar';
-                            $reviewerName = get_sub_field('home_repeater_testimonials_name');
-                            $reviewerReview = get_sub_field('home_repeater_testimonials_review_text');
-                            ?>
-
-                            <p class="font-space text-2xl text-black font-medium"><?php echo $reviewerReview; ?></p>
-                            <div class="flex justify-start items-center mt-10">
-                                <?php 
-                                if( $reviewerImage ) {
-                                    echo wp_get_attachment_image( $reviewerImage, $reviewerImageSize );
-                                }
+                    <div class="testimonial_slideCard bg-grey px-14 pt-14 my-auto">
+                        <div class="owl-carousel owl-theme">
+                            <?php if( have_rows('home_repeater_testimonials') ): ?>
+                                <?php while( have_rows('home_repeater_testimonials') ): the_row(); 
+                                
+                                $reviewerImage = get_sub_field('home_repeater_testimonials_image');
+                                $reviewerImageSize = 'testimonial-avatar';
+                                $reviewerName = get_sub_field('home_repeater_testimonials_name');
+                                $reviewerReview = get_sub_field('home_repeater_testimonials_review_text');
                                 ?>
-                                <h4 class="font-giga text-lg text-black font-bold uppercase"><?php echo $reviewerName; ?></h4>
-                            </div>
-                            
 
-                            <?php endwhile; ?>
-                        <?php endif; ?>
+                                <div class="item">
+                                    <p class="font-space text-2xl text-black font-medium"><?php echo $reviewerReview; ?></p>
+                                    <div class="reviewerImage flex justify-start items-center mt-10">
+                                        <?php 
+                                        if( $reviewerImage ) {
+                                            echo wp_get_attachment_image( $reviewerImage, $reviewerImageSize );
+                                        }
+                                        ?>
+                                        <h4 class="font-giga text-lg text-black font-bold uppercase ml-3"><?php echo $reviewerName; ?></h4>
+                                    </div>
+                                </div>
+
+                                <?php endwhile; ?>
+                            <?php endif; ?>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-bar-inner"></div>
+                        </div>
+
                     </div>
                 </div>
             <?php endwhile; ?>

@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontSize: {
         '1xl': '1.375rem',
+        '2.5xl': '1.75rem',
         '4.5xl': '2.75rem',
       },
       colors: {
