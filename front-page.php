@@ -266,9 +266,9 @@
     <div class="container mx-auto">
         <?php if( have_rows('home_guide') ): ?>
             <?php while( have_rows('home_guide') ): the_row(); ?>
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-5">
                     <!-- Content -->
-                    <div class="py-24 my-auto">
+                    <div class="col-span-2 py-24 my-auto">
                         <?php if( have_rows('home_guide_content') ): ?>
                             <?php while( have_rows('home_guide_content') ): the_row(); 
                             
@@ -278,7 +278,7 @@
                             ?>
 
                                 <h1 class="headingBlack_underline__start text-black font-giga text-4.5xl font-bold leading-tight text-start uppercase mb-8"><?php echo $guideHeading; ?></h1>
-                                <p class="text-black font-space text-1xl text-start mb-14 w-[75%]"><?php echo $guideDescription; ?></p>
+                                <p class="text-black font-space text-1xl text-start mb-14"><?php echo $guideDescription; ?></p>
                                 <a class="bg-lime font-giga text-md font-bold uppercase tracking-tighter border border-black px-12 py-5" href="<?php echo esc_url($guideDownloadLink); ?>">Download</a>
 
 
@@ -289,7 +289,7 @@
                     <?php 
                     $guideFeaturedImage = get_sub_field('home_guide_featured_image');
                     ?>
-                    <div class="guideFeaturedImage" style="background-image: url('<?php echo esc_url($guideFeaturedImage); ?>');">
+                    <div class="guideFeaturedImage col-span-3" style="background-image: url('<?php echo esc_url($guideFeaturedImage); ?>');">
                     </div>
                 </div>
             <?php endwhile; ?>

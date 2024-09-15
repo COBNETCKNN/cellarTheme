@@ -4,7 +4,7 @@
  * Disable editor on certain pages.
  */
 function remove_pages_editor() {
-    $disabled_pages = array(14);
+    $disabled_pages = array(14, 8);
 
     $current_page_id = get_the_ID();
 

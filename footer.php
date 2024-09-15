@@ -22,33 +22,37 @@
                     <!-- Social Media -->
                     <?php if( have_rows('theme_settings', 'option') ): ?>
                         <?php while( have_rows('theme_settings', 'option') ): the_row(); ?>
-                            <div class="socialMedia_icons__wrapper flex justify-start my-auto">
-                                <?php
-                                    if( have_rows('social_media', 'option') ):
-                                        while( have_rows('social_media', 'option') ) : the_row();
-                                        
-                                        $socialMediaIcon = get_sub_field('social_media_icon', 'option');
-                                        $socilaMediaIconSize = 'social-media';
-                                        $socialMediaIconLink = get_sub_field('social_media_link', 'option'); ?>
-
-                                        <a href="<?php echo esc_url($socialMediaIconLink); ?>">
-                                            <?php
-                                                if( $socialMediaIcon ) {
-                                                    echo wp_get_attachment_image( $socialMediaIcon, $socilaMediaIconSize );
-                                                }
-                                            ?>
-                                        </a>
-
+                            <?php if( have_rows('theme_settings_footer', 'option') ): ?>
+                                <?php while( have_rows('theme_settings_footer', 'option') ): the_row(); ?>
+                                    <div class="socialMedia_icons__wrapper flex justify-start my-auto">
                                         <?php
+                                            if( have_rows('social_media', 'option') ):
+                                                while( have_rows('social_media', 'option') ) : the_row();
+                                                
+                                                $socialMediaIcon = get_sub_field('social_media_icon', 'option');
+                                                $socilaMediaIconSize = 'social-media';
+                                                $socialMediaIconLink = get_sub_field('social_media_link', 'option'); ?>
 
-                                        endwhile;
+                                                <a href="<?php echo esc_url($socialMediaIconLink); ?>">
+                                                    <?php
+                                                        if( $socialMediaIcon ) {
+                                                            echo wp_get_attachment_image( $socialMediaIcon, $socilaMediaIconSize );
+                                                        }
+                                                    ?>
+                                                </a>
 
-                                    // No value.
-                                    else :
-                                        // Do something...
-                                    endif;
-                                ?>
-                            </div>
+                                                <?php
+
+                                                endwhile;
+
+                                            // No value.
+                                            else :
+                                                // Do something...
+                                            endif;
+                                        ?>
+                                    </div>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
                         <?php endwhile; ?>
                     <?php endif; ?>
                 </div>
