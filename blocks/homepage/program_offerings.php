@@ -2,6 +2,7 @@
 /**
  * Flexible content template for Program Offerings section.
  */
+global $primary_color, $secondary_color, $tertiary_color, $primary_text_color, $secondary_text_color, $tertiary_text_color;
 ?>
 
 <?php if( have_rows('section_appearance') ): ?>
@@ -16,12 +17,9 @@
             // Get the image URL
             $background_image_url = wp_get_attachment_url($background_image_id);
             $section_style = "background-image: url('$background_image_url'); background-size: cover; background-position: center;";
-        } elseif ($background_color) {
-            // Set the background color if no image
-            $section_style = "background-color: $background_color;";
-        } else {
+        }else {
             // Fallback background style
-            $section_style = "background-color: black;";
+            $section_style = "background-color: " . esc_attr($secondary_color) . ";";
         }
 
     endwhile; ?>
@@ -37,9 +35,9 @@
                     <?php while( have_rows('content') ): the_row(); 
 
                         $programsHeading = get_sub_field('heading');
-                        $programsHeadingColor = get_sub_field('heading_color');
+                        $programsHeadingColor = esc_attr($primary_text_color);
                         $programsSubheading = get_sub_field('subheading');
-                        $programsSubheadingColor = get_sub_field('subheading_color');
+                        $programsSubheadingColor = esc_attr($primary_text_color);
                         // Get the current layout
                         $layout = get_row_layout();
                         ?>
@@ -55,8 +53,8 @@
                                     
                                     $buttonName = get_sub_field('button_name');
                                     $buttonLink = get_sub_field('button_link');
-                                    $buttonColor = get_sub_field('button_color');
-                                    $buttonTextColor = get_sub_field('button_text_color');
+                                    $buttonColor = esc_attr($primary_color);
+                                    $buttonTextColor = esc_attr($secondary_text_color);
                                     ?>
 
                                     <a class="font-giga text-md font-bold uppercase tracking-tighter px-12 py-5 border border-black" style="background-color: <?php echo $buttonColor; ?>; color: <?php echo $buttonTextColor; ?>;"><?php echo $buttonName; ?></a>
@@ -96,8 +94,8 @@
                     <div class="programsCard_content__wrapper h-[50%] w-full px-10">
                         <div class="w-full h-full flex justify-center items-center">
                             <div class="">
-                                <h3 class="text-lime font-giga font-bold text-2xl text-start mb-5 uppercase"><?php the_title(); ?></h3>
-                                <div class="text-white font-space text-xl text-start">
+                                <h3 class="font-giga font-bold text-2xl text-start mb-5 uppercase" style="color: <?php echo $tertiary_text_color; ?>"><?php the_title(); ?></h3>
+                                <div class="font-space text-xl text-start" style="color: <?php echo $primary_text_color; ?>">
                                     <?php echo wp_trim_words(get_the_content(), 30); ?>
                                 </div>
                             </div>
@@ -110,7 +108,11 @@
                             <div class="text-black font-space text-xl text-start mb-10">
                                 <?php echo wp_trim_words(get_the_content(), 30); ?>
                             </div>
-                            <a class="bg-lime text-black font-giga text-sm font-semibold uppercase tracking-tighter px-7 py-3 border border-black" href="<?php echo esc_url(get_permalink()); ?>">Learn More</a>
+                            <?php 
+                            $buttonColor = esc_attr($primary_color);
+                            $buttonTextColor = esc_attr($secondary_text_color);
+                            ?>
+                            <a class="font-giga text-sm font-semibold uppercase tracking-tighter px-7 py-3 border border-black" style="background-color: <?php echo $buttonColor; ?>; color: <?php echo $buttonTextColor; ?>; href="<?php echo esc_url(get_permalink()); ?>">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -125,3 +127,31 @@
         </div>
     </div>
 </section>
+
+<?php
+// Convert the hex to RGB
+function hexToRgb($hex) {
+    // Remove the hash at the start if it's there
+    $hex = str_replace('#', '', $hex);
+
+    if (strlen($hex) == 6) {
+        list($r, $g, $b) = sscanf($hex, "%02x%02x%02x");
+    } else {
+        list($r, $g, $b) = sscanf($hex, "%1x%1x%1x");
+        $r = $r * 17;
+        $g = $g * 17;
+        $b = $b * 17;
+    }
+
+    return "$r, $g, $b";
+}
+
+$rgb_color = hexToRgb($primary_color); 
+?>
+
+
+<style>
+    .programsCard_hoverContent__wrapper {
+        background-color: rgba(<?php echo $rgb_color; ?>, 0.9);
+    }
+</style>

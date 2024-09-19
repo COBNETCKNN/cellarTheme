@@ -2,11 +2,13 @@
 /**
  * Flexible content template for Hero Section.
  */
+// Global Variables for colors selected in Theme Settings
+global $primary_color, $secondary_color, $tertiary_color, $primary_text_color, $secondary_text_color, $tertiary_text_color;
 ?>
 
 <?php if( have_rows('section_appearance') ): ?>
     <?php while( have_rows('section_appearance') ): the_row(); 
-    
+        
         // Fetch the background image and color
         $background_image_id = get_sub_field('background_image'); 
         $background_color = get_sub_field('background_color'); 
@@ -16,12 +18,9 @@
             // Get the image URL
             $background_image_url = wp_get_attachment_url($background_image_id);
             $section_style = "background-image: url('$background_image_url'); background-size: cover; background-position: center;";
-        } elseif ($background_color) {
-            // Set the background color if no image
-            $section_style = "background-color: $background_color;";
         } else {
             // Fallback background style
-            $section_style = "background-color: black;";
+            $section_style = "background-color: " . esc_attr($primary_color) . ";";
         }
 
     endwhile; ?>
@@ -35,11 +34,11 @@
                 <?php while( have_rows('content') ): the_row(); 
             
                 $heroHeadlineIntro = get_sub_field('headline_intro');
-                $heroHeadlineIntroColor = get_sub_field('headline_intro_text_color');
+                $heroHeadlineIntroColor = esc_attr($tertiary_text_color);
                 $heroHeading = get_sub_field('heading');
-                $heroHeadingTextColor = get_sub_field('heading_text_color');
+                $heroHeadingTextColor = esc_attr($primary_text_color);
                 $heroSubHeading = get_sub_field('subheading');
-                $heroSubHeadingTextColor = get_sub_field('subheading_color');
+                $heroSubHeadingTextColor = esc_attr($primary_text_color);
                 // Get the current layout
                 $layout = get_row_layout();
                 ?>
@@ -59,8 +58,8 @@
                             
                             $buttonName = get_sub_field('button_name');
                             $buttonLink = get_sub_field('button_link');
-                            $buttonColor = get_sub_field('button_color');
-                            $buttonTextColor = get_sub_field('button_text_color');
+                            $buttonColor = esc_attr($primary_color);
+                            $buttonTextColor = esc_attr($secondary_text_color);
                             ?>
 
                             <a class="font-giga text-md font-bold uppercase tracking-tighter px-12 py-5 mt-10" style="background-color: <?php echo $buttonColor; ?>; color: <?php echo $buttonTextColor; ?>;"
@@ -74,8 +73,8 @@
             <?php endif; ?>
         </div>
     </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="divider-triangle-shape" viewBox="0 0 1080 100" preserveAspectRatio="none">
+        <path d="M 0 55 L 0 100 L 540 74 Z" fill="<?php echo $primary_color; ?>"></path>
+        <path d="M 0,100 540,75 1080,100 Z" fill="<?php echo $secondary_color; ?>"></path>
+    </svg>
  </section>
- <svg xmlns="http://www.w3.org/2000/svg" class="divider-triangle-shape" viewBox="0 0 1080 100" preserveAspectRatio="none">
-    <path d="M 0 55 L 0 100 L 540 74 Z" fill="#CFF15C"></path>
-    <path d="M 0,100 540,75 1080,100 Z" fill="black"></path>
-</svg>

@@ -2,6 +2,8 @@
 /**
  * Flexible content template for Process Overview section.
  */
+// Global Variables for colors selected in Theme Settings
+global $primary_color, $secondary_color, $tertiary_color, $primary_text_color, $secondary_text_color, $tertiary_text_color;
 ?>
 
 <?php if( have_rows('section_appearance') ): ?>
@@ -16,12 +18,9 @@
             // Get the image URL
             $background_image_url = wp_get_attachment_url($background_image_id);
             $section_style = "background-image: url('$background_image_url'); background-size: cover; background-position: center;";
-        } elseif ($background_color) {
-            // Set the background color if no image
-            $section_style = "background-color: $background_color;";
         } else {
             // Fallback background style
-            $section_style = "background-color: black;";
+            $section_style = "background-color: " . esc_attr($secondary_color) . ";";
         }
 
     endwhile; ?>
@@ -36,9 +35,9 @@
                 <?php while( have_rows('processes_content') ): the_row(); 
 
                     $processOverviewHeading = get_sub_field('heading');
-                    $processOverviewHeadingColor = get_sub_field('heading_color');
+                    $processOverviewHeadingColor = esc_attr($primary_text_color);
                     $processOverviewSubheading = get_sub_field('subheading');
-                    $processOverviewSubheadingColor = get_sub_field('subheading_color');
+                    $processOverviewSubheadingColor = esc_attr($primary_text_color); 
                     // Get the current layout
                     $layout = get_row_layout();
                     ?>
@@ -54,8 +53,8 @@
                                 
                                 $buttonName = get_sub_field('button_name');
                                 $buttonLink = get_sub_field('button_link');
-                                $buttonColor = get_sub_field('button_color');
-                                $buttonTextColor = get_sub_field('button_text_color');
+                                $buttonColor = esc_attr($primary_color);
+                                $buttonTextColor = esc_attr($secondary_text_color);
                                 ?>
 
                                 <a class="font-giga text-md font-bold uppercase tracking-tighter px-12 py-5 border border-black" style="background-color: <?php echo $buttonColor; ?>; color: <?php echo $buttonTextColor; ?>;"
@@ -86,10 +85,10 @@
                 $formatted_number = sprintf('%02d', $counter);
                 ?>
 
-                <div class="processCard_wrapper bg-charcoal px-10 py-10">
+                <div class="processCard_wrapper px-10 py-10" style="background-color: <?php echo $tertiary_color; ?>;">
                     <span class="processOverview_cards__counter text-zinc-600 font-giga text-black font-black leading-none opacity-40"><?php echo $formatted_number; ?></span>
-                    <h5 class="font-bold font-giga text-lime text-2.5xl uppercase text-start mt-14"><?php echo $processOverviewCardsHeading; ?></h5>
-                    <p class="font-medium font-space text-white text-xl text-start pt-5"><?php echo $processOverviewCardsDescrirption; ?></p>
+                    <h5 class="font-bold font-giga text-2.5xl uppercase text-start mt-14" style="color: <?php echo $tertiary_text_color; ?>"><?php echo $processOverviewCardsHeading; ?></h5>
+                    <p class="font-medium font-space text-white text-xl text-start pt-5" style="color: <?php echo $primary_text_color ?>"><?php echo $processOverviewCardsDescrirption; ?></p>
                 </div>
 
                 <?php $counter++; ?>
@@ -104,3 +103,26 @@
         </div>
     </div>
 </section>
+
+<style>
+    .heading_greenUnderline::after {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 2px;
+        background-color: <?php echo esc_attr($primary_color); ?>;
+        margin: 25px auto 0;
+        position: relative;
+    }
+
+    .processCard_wrapper.active {
+        background-color: <?php echo esc_attr($primary_color); ?> !important;
+    }
+
+    .progress-bar-inner-top {
+        width: 0;
+        height: 100%;
+        background-color: <?php echo esc_attr($primary_color); ?>;
+        transition: width 0ms;
+    }
+</style>

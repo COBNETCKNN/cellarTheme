@@ -1,7 +1,10 @@
-<footer class="bg-charcoal">
+<?php 
+global $primary_color, $secondary_color, $tertiary_color, $primary_text_color, $secondary_text_color, $tertiary_text_color, $quaternary_text_color;
+?>
+<footer style="background-color: <?php echo $tertiary_color; ?>">
     <div class="container mx-auto">
         <!-- Upper footer -->
-        <div class="grid grid-cols-2 gap-4 py-44 bg-charcoal mx-10">
+        <div class="grid grid-cols-2 gap-4 py-44 mx-10" style="background-color: <?php echo $tertiary_color; ?>">
             <?php if( have_rows('theme_settings', 'option') ): ?>
                 <?php while( have_rows('theme_settings', 'option') ): the_row(); ?>
                     <?php if( have_rows('theme_settings_footer', 'option') ): ?>
@@ -46,7 +49,7 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <!-- Contact -->
                                     <div class="">
-                                        <h4 class="text-lime font-giga text-md uppercase font-extrabold mb-5">Contact</h4>
+                                        <h4 class="font-giga text-md uppercase font-extrabold mb-5" style="color: <?php echo $tertiary_text_color; ?>;">Contact</h4>
                                         <?php if( have_rows('footer_contact', 'option') ): ?>
                                             <?php while( have_rows('footer_contact', 'option') ): the_row(); 
                                             
@@ -57,13 +60,13 @@
                                             <div class="my-auto">
                                                 <!-- Phone -->
                                                 <div class="mb-5">
-                                                    <span class="font-space text-stone-600 uppercase text-sm">Phone:</span>
-                                                    <a class="text-white font-space font-semibold text-sm" href="tel:<?php echo $contactPhone; ?>"><?php echo $contactPhone; ?></a>
+                                                    <span class="font-space uppercase text-sm" style="color: <?php echo $quaternary_text_color; ?>">Phone:</span>
+                                                    <a class="font-space font-semibold text-sm" style="color: <?php echo $primary_text_color; ?>;" href="tel:<?php echo $contactPhone; ?>"><?php echo $contactPhone; ?></a>
                                                 </div>
                                                 <!-- Email -->
                                                 <div class="">
-                                                    <span class="font-space text-stone-600 uppercase text-sm">Email:</span>
-                                                    <a class="text-white font-space font-semibold text-sm" href="mailto:<?php echo $contactEmail; ?>"><?php echo $contactEmail; ?></a>
+                                                    <span class="font-space uppercase text-sm" style="color: <?php echo $quaternary_text_color; ?>">Email:</span>
+                                                    <a class="font-space font-semibold text-sm" style="color: <?php echo $primary_text_color; ?>;" href="mailto:<?php echo $contactEmail; ?>"><?php echo $contactEmail; ?></a>
                                                 </div>
 
                                             </div>
@@ -72,7 +75,7 @@
                                     </div>
                                     <!-- Address -->
                                     <div class="">
-                                        <h4 class="text-lime font-giga text-md uppercase font-extrabold mb-5">Address</h4>
+                                        <h4 class="font-giga text-md uppercase font-extrabold mb-5" style="color: <?php echo $tertiary_text_color; ?>;">Address</h4>
                                         <?php if( have_rows('footer_address', 'option') ): ?>
                                             <?php while( have_rows('footer_address', 'option') ): the_row(); 
                                             
@@ -80,7 +83,7 @@
                                             $addressLocation = get_sub_field('footer_address_address');
                                             ?>
 
-                                            <span class="block font-space text-stone-600 text-sm"><?php echo $addressName; ?></span>
+                                            <span class="block font-space text-sm" style="color: <?php echo $quaternary_text_color; ?>"><?php echo $addressName; ?></span>
                                             <span class="block text-white font-space font-semibold text-sm"><?php echo $addressLocation; ?></span>
                                             <?php endwhile; ?>
                                         <?php endif; ?>
@@ -97,10 +100,10 @@
         <div class="flex justify-between mx-10">
             <!-- Rights reserved -->
              <div class="py-6 my-auto w-[30%]">
-             <p class="text-start text-md font-space text-white">Copyright &copy; <span id="year"><?php echo date("Y"); ?></span> <a class="text-lime" href="https://usekilo.com/" target=”_blank”><?php echo bloginfo('name'); ?></a>. All rights reserved.</p>
+             <p class="text-start text-md font-space" style="color: <?php echo $primary_text_color; ?>">Copyright &copy; <span id="year"><?php echo date("Y"); ?></span> <a class="text-lime" style="color: <?php echo $tertiary_text_color; ?>" href="https://usekilo.com/" target=”_blank”><?php echo bloginfo('name'); ?></a>. All rights reserved.</p>
              </div>
             <!-- Footer navigation & Social media -->
-             <div class="footer_navigation__wrapper py-6 my-auto bg-lime w-[70%]">
+             <div class="footer_navigation__wrapper py-6 my-auto w-[70%]" style="background-color: <?php echo $primary_color; ?>">
                 <div class="flex justify-between mx-16">
                     <!-- Navigation -->
                      <div class="footer_navItems__wrapper">
@@ -108,7 +111,7 @@
                                 wp_nav_menu(
                                     array(
                                     'theme_location' => 'footer-menu',
-                                    'container_class' => 'footer-menu text-black font-bold font-space',
+                                    'container_class' => 'footer-menu font-bold font-space',
                                     )
                                 );
                             ?>
@@ -154,6 +157,12 @@
         </div>
     </div>
 </footer>
+
+<style>
+    #menu-footer-menu > .menu-item > a {
+        color: <?php echo esc_attr($secondary_text_color); ?>;
+    }
+</style>
 
 <?php wp_footer(); ?>
 </body>

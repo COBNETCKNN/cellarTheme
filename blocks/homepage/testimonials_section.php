@@ -2,6 +2,7 @@
 /**
  * Flexible content template for Testimonial Section.
  */
+global $primary_color, $secondary_color, $tertiary_color, $primary_text_color, $secondary_text_color, $tertiary_text_color;
 ?>
 
 <?php if( have_rows('section_appearance') ): ?>
@@ -16,12 +17,9 @@
             // Get the image URL
             $background_image_url = wp_get_attachment_url($background_image_id);
             $section_style = "background-image: url('$background_image_url'); background-size: cover; background-position: center;";
-        } elseif ($background_color) {
-            // Set the background color if no image
-            $section_style = "background-color: $background_color;";
         } else {
             // Fallback background style
-            $section_style = "background-color: black;";
+            $section_style = "background-color: " . esc_attr($secondary_color) . ";";
         }
 
     endwhile; ?>
@@ -37,9 +35,9 @@
                     <?php while( have_rows('content') ): the_row(); 
                     
                         $testimonialsHeading = get_sub_field('heading');
-                        $testimonialHeadingColor = get_sub_field('heading_color');
+                        $testimonialHeadingColor = esc_attr($primary_text_color);
                         $testimonialsDescription = get_sub_field('description'); 
-                        $testimonialDescritpionColor = get_sub_field('description_color');
+                        $testimonialDescritpionColor = esc_attr($primary_text_color);
                         $layout = get_row_layout();
                         ?>
 
@@ -54,8 +52,8 @@
                                     
                                     $buttonName = get_sub_field('button_name');
                                     $buttonLink = get_sub_field('button_link');
-                                    $buttonColor = get_sub_field('button_color');
-                                    $buttonTextColor = get_sub_field('button_text_color');
+                                    $buttonColor = esc_attr($primary_color);
+                                    $buttonTextColor = esc_attr($secondary_text_color);
                                     ?>
 
                                     <a class="font-giga text-md font-bold uppercase tracking-tighter px-12 py-5 border border-black" style="background-color: <?php echo $buttonColor; ?>; color: <?php echo $buttonTextColor; ?>;"><?php echo $buttonName; ?></a>
@@ -101,3 +99,12 @@
         </div>
     </div>
 </section>
+
+<style>
+    .progress-bar-inner {
+        width: 0;
+        height: 100%;
+        background-color: <?php echo esc_attr($primary_color); ?>;
+        transition: width 0ms;
+    }
+</style>

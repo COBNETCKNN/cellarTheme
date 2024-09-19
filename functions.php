@@ -30,6 +30,12 @@ require_once('includes/theme-supports.php');
 //Custom Post Types
 require_once('includes/post-types.php');
 
+//Global Variables for ACF fields
+require_once('includes/global-variables.php');
+
+//Adjusting site favicon to be pulled from Theme Settings
+require_once('includes/site-favicon.php');
+
 // Exclude node_modules from exporting All In One Migration Plugin
 add_filter( 'ai1wm_exclude_themes_from_export',
 function ( $exclude_filters ) {

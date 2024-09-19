@@ -2,6 +2,7 @@
 /**
  * Flexible content template for Intro Section.
  */
+global $primary_color, $secondary_color, $tertiary_color, $primary_text_color, $secondary_text_color, $tertiary_text_color;
 ?>
 
 <?php if( have_rows('section_appearance') ): ?>
@@ -16,12 +17,9 @@
             // Get the image URL
             $background_image_url = wp_get_attachment_url($background_image_id);
             $section_style = "background-image: url('$background_image_url'); background-size: cover; background-position: center;";
-        } elseif ($background_color) {
-            // Set the background color if no image
-            $section_style = "background-color: $background_color;";
         } else {
             // Fallback background style
-            $section_style = "background-color: black;";
+            $section_style = "background-color: " . esc_attr($tertiary_color) . ";";
         }
 
     endwhile; ?>
@@ -50,9 +48,9 @@
                         <?php while( have_rows('intro_section_content') ): the_row(); 
 
                             $introContentHeading = get_sub_field('heading');
-                            $introContentHeadingColor = get_sub_field('heading_color');
+                            $introContentHeadingColor = esc_attr($primary_text_color);
                             $introContentDescription = get_sub_field('description');
-                            $introContentDescriptionColor = get_sub_field('description_color');
+                            $introContentDescriptionColor = esc_attr($primary_text_color);
                             // Get the current layout
                             $layout = get_row_layout();
                             ?>
@@ -68,8 +66,8 @@
                                         
                                         $buttonName = get_sub_field('button_name');
                                         $buttonLink = get_sub_field('button_link');
-                                        $buttonColor = get_sub_field('button_color');
-                                        $buttonTextColor = get_sub_field('button_text_color');
+                                        $buttonColor = esc_attr($primary_color);
+                                        $buttonTextColor = esc_attr($secondary_text_color);
                                         ?>
 
                                         <a class="font-giga text-md font-bold uppercase tracking-tighter px-12 py-5 border border-black" style="background-color: <?php echo $buttonColor; ?>; color: <?php echo $buttonTextColor; ?>;"
@@ -86,3 +84,15 @@
         </div>
     </div>
  </section>
+
+ <style>
+    .headingGreen_underline__start::after {
+        content: "";
+        display: block;
+        width: 70px; 
+        height: 2px;
+        background-color: <?php echo esc_attr($primary_color); ?>;
+        margin: 25px 0 0;
+        position: relative;
+    }
+ </style>
